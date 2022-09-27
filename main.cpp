@@ -8,6 +8,16 @@ using namespace std;
 
 int main()
 {
+	// Get the desktop resolution
+	VideoMode::getDesktopMode().width;
+	VideoMode::getDesktopMode().height;
+
+	//Calculate the aspect ratio of the monitor
+	double aspectRatio = VideoMode::getDesktopMode().height / VideoMode::getDesktopMode().width;
+
+
+
+
 	// Create a video mode object
 	VideoMode vm(1920, 1080);
 
