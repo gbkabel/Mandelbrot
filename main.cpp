@@ -1,6 +1,7 @@
 // Include important C++ libraries here
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "ComplexPlane.h"
 
 // Make code easier to type with "using namespace"
 using namespace sf;
