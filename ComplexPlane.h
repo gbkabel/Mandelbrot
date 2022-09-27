@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <VertexArray.hpp>
+
 
 
 using namespace sf;

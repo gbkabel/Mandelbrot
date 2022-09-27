@@ -1,5 +1,5 @@
 #include <vector>
 #include "ComplexPlane.h"
-using namespace sfml;
+using namespace sf;
 using namespace std;
 //testing
