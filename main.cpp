@@ -22,17 +22,34 @@ int main()
 
 	// Create and open a window for the game
 	RenderWindow window(vm, "Mandelbrot", Style::Default);
-	ComplexPlane ComplexPlane(); //creates the complex plane object we needed
+	ComplexPlane ComplexPlane; //creates the complex plane object we needed
 	Font font; //creates font
 	font.loadFromFile("calibri-regular.ttf"); //loads the font
 	Text mytext;
+	mytext.setFont(font);
 	VertexArray backgrounder; //vertex array creation
 	backgrounder.setPrimitiveType(Points);
 	backgrounder.resize(widthOfScreen * heightOfScreen);
 	
 	enum class state {CALCULATING, DISPLAYING};
 	state state = state::CALCULATING;
-	
+
+	while (window.isOpen())
+	{
+		Event event;
+		while (window.pollEvent(event)){
+			if (event.type == sf::Event::Closed)
+				{
+					window.close();
+				}
+			if (event.type == sf::Event::MouseButtonPressed){
+				if (event.mouseButton.button == sf::Mouse::Left){
+					ComplexPlane.zoomOut();
+					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition));
+				}
+			}
+		}
+	}
 
 	return 0;
 }
