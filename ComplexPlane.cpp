@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <sstream>
 #include "ComplexPlane.h"
 using namespace sf;
 using namespace std;

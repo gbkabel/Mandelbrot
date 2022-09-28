@@ -22,7 +22,7 @@ int main()
 
 	// Create and open a window for the game
 	RenderWindow window(vm, "Mandelbrot", Style::Default);
-	ComplexPlane ComplexPlane; //creates the complex plane object we needed
+	ComplexPlane ComplexPlane(aspectRatio); //creates the complex plane object we needed
 	Font font; //creates font
 	font.loadFromFile("calibri-regular.ttf"); //loads the font
 	Text mytext;
@@ -37,7 +37,8 @@ int main()
 	while (window.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event)){
+		while (window.pollEvent(event))
+		{
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
@@ -50,7 +51,8 @@ int main()
 					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
 				}
-				else if (event.mouseButton.button == sf::Mouse::Right) {
+				else if (event.mouseButton.button == sf::Mouse::Right) 
+				{
 					ComplexPlane.zoomOut(); //ditto with zoom out
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); // ditto
 				}
@@ -64,10 +66,12 @@ int main()
 		{
 			window.close();
 		}
-		if (stateOfProgram == state::CALCULATING) {
-			for (int j = 0; j < widthOfScreen; j++) {
-				for (int i = 0; i < heightOfScreen; i++) {
-
+		if (stateOfProgram == state::CALCULATING) 
+		{
+			for (int j = 0; j < widthOfScreen; j++) 
+			{
+				for (int i = 0; i < heightOfScreen; i++) 
+				{
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
 				}
 			}

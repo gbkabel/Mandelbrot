@@ -8,7 +8,7 @@ using namespace sf;
 class ComplexPlane
 {
 public:
-
+	ComplexPlane(float aspectRatio);
 	void zoomIn();
 	void zoomOut();
 	void setCenter(Vector2f coord);
