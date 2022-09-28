@@ -47,7 +47,7 @@ int main()
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
 					ComplexPlane.zoomOut();
-					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition));
+					//ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition));
 				}
 			}
 			if (event.type == sf::Event::MouseMoved)
