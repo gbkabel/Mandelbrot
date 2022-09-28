@@ -32,7 +32,7 @@ int main()
 	backgrounder.resize(widthOfScreen * heightOfScreen);
 	
 	enum class state {CALCULATING, DISPLAYING};
-	state state = state::CALCULATING;
+	state stateOfProgram = state::CALCULATING;
 
 	while (window.isOpen())
 	{
@@ -44,20 +44,33 @@ int main()
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
+				stateOfProgram = state::CALCULATING;
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					ComplexPlane.zoomOut();
-					//ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition));
+					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
+					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
+				}
+				else if (event.mouseButton.button == sf::Mouse::Right) {
+					ComplexPlane.zoomOut(); //ditto with zoom out
+					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); // ditto
 				}
 			}
 			if (event.type == sf::Event::MouseMoved)
 			{
-				///
+				ComplexPlane.setMouseLocation(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //ig this is used to display the mouse coordinates as it moves
 			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
+		}
+		if (stateOfProgram == state::CALCULATING) {
+			for (int j = 0; j < widthOfScreen; j++) {
+				for (int i = 0; i < heightOfScreen; i++) {
+
+					backgrounder[j + i * 1].position = { (float)j, (float)i };
+				}
+			}
 		}
 	}
 
