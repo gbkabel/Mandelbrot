@@ -39,15 +39,25 @@ int main()
 		Event event;
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left)
 				{
-					window.close();
-				}
-			if (event.type == sf::Event::MouseButtonPressed){
-				if (event.mouseButton.button == sf::Mouse::Left){
 					ComplexPlane.zoomOut();
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition));
 				}
 			}
+			if (event.type == sf::Event::MouseMoved)
+			{
+				///
+			}
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
 		}
 	}
 
