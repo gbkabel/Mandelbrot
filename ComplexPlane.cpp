@@ -2,8 +2,9 @@
 #include <cmath>
 #include <sstream>
 #include "ComplexPlane.h"
-using namespace sf;
+
 using namespace std;
+using namespace sf;
 
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
@@ -32,6 +33,11 @@ void ComplexPlane::zoomOut()
 void ComplexPlane::setCenter(Vector2f coord)
 {
 	m_view.setSize(coord);
+}
+
+View ComplexPlane::getView()
+{
+	
 }
 
 void ComplexPlane::setMouseLocation(Vector2f coord)

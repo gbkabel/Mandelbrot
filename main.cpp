@@ -1,12 +1,12 @@
 // Include important C++ libraries here
-#include <SFML/Graphics.hpp>
 #include <iostream>
-#include "ComplexPlane.h"
 #include <complex>
+#include <SFML/Graphics.hpp>
+#include "ComplexPlane.h"
 
 // Make code easier to type with "using namespace"
-using namespace sf;
 using namespace std;
+using namespace sf;
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 	int heightOfScreen = VideoMode::getDesktopMode().height;
 
 	//Calculate the aspect ratio of the monitor
-	double aspectRatio = VideoMode::getDesktopMode().height / VideoMode::getDesktopMode().width;
+	float aspectRatio = VideoMode::getDesktopMode().height / VideoMode::getDesktopMode().width;
 
 	// Create a video mode object
 	VideoMode vm(1920, 1080);
@@ -73,10 +73,14 @@ int main()
 				for (int i = 0; i < heightOfScreen; i++) 
 				{
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
+
 				}
 			}
 		}
 	}
+	
+	window.clear(); // Clears the window
+	window.draw(backgrounder);	//Draws the vertex array
 
 	return 0;
 }
