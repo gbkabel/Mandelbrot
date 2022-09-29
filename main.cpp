@@ -46,7 +46,7 @@ int main()
 			{
 				resolution.x = VideoMode::getDesktopMode().width;
 				resolution.y = VideoMode::getDesktopMode().height;
-				float aspectRatio = resolution.y / resolution.x;
+				aspectRatio = resolution.y / resolution.x;
 				backgrounder.resize(VideoMode::getDesktopMode().width* VideoMode::getDesktopMode().height);
 				break;
 			}
