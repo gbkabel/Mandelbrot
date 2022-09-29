@@ -47,7 +47,15 @@ void ComplexPlane::setMouseLocation(Vector2f coord)
 
 void ComplexPlane::loadText(Text& text)
 {
-
+	stringstream textBox;
+	textBox << "Mandelbrot Set";
+	textBox << "\nCenter: (";
+	textBox << "\nCursor: (";
+	textBox << "Left-click to Zoom in";
+	textBox << "Right-click to Zoom out";
+	text = textBox.();
+	return text;
+	
 }
 
 size_t ComplexPlane::countIterations(Vector2f coord)

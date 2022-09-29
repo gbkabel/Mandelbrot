@@ -19,7 +19,7 @@ int main()
 	float aspectRatio = resolution.y / resolution.x;
 
 	// Create and open a window for the game
-	RenderWindow window(VideoMode(resolution.x, resolution.y), "Mandelbrot", Style::Default);
+	RenderWindow window(VideoMode(resolution.x, resolution.y), "Mandelbrot", Style::Default); 
 	ComplexPlane ComplexPlane(aspectRatio); //creates the complex plane object we needed
 	Font font; //creates font
 	font.loadFromFile("calibri-regular.ttf"); //loads the font
@@ -29,20 +29,20 @@ int main()
 	backgrounder.setPrimitiveType(Points);
 	backgrounder.resize(VideoMode::getDesktopMode().width * VideoMode::getDesktopMode().height);
 	
-	enum class state {CALCULATING, DISPLAYING};
-	state stateOfProgram = state::CALCULATING;
+	enum class state {CALCULATING, DISPLAYING}; // Create enum class
+	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
 
 	while (window.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event))
+		while (window.pollEvent(event)) // Poll windows queue events
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed)  // Close the window
 			{
 				window.close();
 				break;
 			}
-			if (event.type == sf::Event::Resized)
+			if (event.type == sf::Event::Resized) // Resize the window
 			{
 				resolution.x = VideoMode::getDesktopMode().width;
 				resolution.y = VideoMode::getDesktopMode().height;
@@ -53,33 +53,33 @@ int main()
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				stateOfProgram = state::CALCULATING;
-				if (event.mouseButton.button == sf::Mouse::Left)
+				if (event.mouseButton.button == sf::Mouse::Left) // Left-click zooms in
 				{
 					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
 				}
-				else if (event.mouseButton.button == sf::Mouse::Right) 
+				else if (event.mouseButton.button == sf::Mouse::Right) // Right-click zooms out
 				{
 					ComplexPlane.zoomOut(); //ditto with zoom out
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); // ditto
 				}
 				break;
 			}
-			if (event.type == sf::Event::MouseMoved)
+			if (event.type == sf::Event::MouseMoved) // Mouse move gets current coords
 			{
-				ComplexPlane.setMouseLocation(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //ig this is used to display the mouse coordinates as it moves
+				ComplexPlane.setMouseLocation(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //This is used to display the mouse coordinates as it moves
 				break;
 			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		if (Keyboard::isKeyPressed(Keyboard::Escape)) // Escape key closes program
 		{
 			window.close();
 		}
-		if (stateOfProgram == state::CALCULATING) 
+		if (stateOfProgram == state::CALCULATING) // Checks to if the state of our enum class is calculating
 		{
 			for (int j = 0; j < resolution.x; j++) 
-			{
-				for (int i = 0; i < resolution.y; i++) 
+			{					
+				for (int i = 0; i < resolution.y; i++)		// Double for loop to loop through all pixels
 				{
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
 
@@ -88,9 +88,6 @@ int main()
 		}
 	}
 	
-	window.clear(); // Clears the window
-	window.draw(backgrounder);	//Draws the vertex array
-
 	return 0;
 }
 
