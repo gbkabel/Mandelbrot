@@ -16,7 +16,7 @@ int main()
 	resolution.y = VideoMode::getDesktopMode().height;
 
 	//Calculate the aspect ratio of the monitor
-	float aspectRatio = VideoMode::getDesktopMode().height / VideoMode::getDesktopMode().width;
+	float aspectRatio = resolution.y / resolution.x;
 
 	// Create and open a window for the game
 	RenderWindow window(VideoMode(resolution.x, resolution.y), "Mandelbrot", Style::Default);
@@ -40,6 +40,15 @@ int main()
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
+				break;
+			}
+			if (event.type == sf::Event::Resized)
+			{
+				resolution.x = VideoMode::getDesktopMode().width;
+				resolution.y = VideoMode::getDesktopMode().height;
+				float aspectRatio = resolution.y / resolution.x;
+				backgrounder.resize(VideoMode::getDesktopMode().width* VideoMode::getDesktopMode().height);
+				break;
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
@@ -54,10 +63,12 @@ int main()
 					ComplexPlane.zoomOut(); //ditto with zoom out
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); // ditto
 				}
+				break;
 			}
 			if (event.type == sf::Event::MouseMoved)
 			{
 				ComplexPlane.setMouseLocation(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //ig this is used to display the mouse coordinates as it moves
+				break;
 			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
@@ -66,9 +77,9 @@ int main()
 		}
 		if (stateOfProgram == state::CALCULATING) 
 		{
-			for (int j = 0; j < widthOfScreen; j++) 
+			for (int j = 0; j < resolution.x; j++) 
 			{
-				for (int i = 0; i < heightOfScreen; i++) 
+				for (int i = 0; i < resolution.y; i++) 
 				{
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
 
