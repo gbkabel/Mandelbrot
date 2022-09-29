@@ -11,17 +11,15 @@ using namespace sf;
 int main()
 {
 	// Get the desktop resolution
-	int widthOfScreen = VideoMode::getDesktopMode().width;
-	int heightOfScreen = VideoMode::getDesktopMode().height;
+	Vector2f resolution;
+	resolution.x = VideoMode::getDesktopMode().width;
+	resolution.y = VideoMode::getDesktopMode().height;
 
 	//Calculate the aspect ratio of the monitor
 	float aspectRatio = VideoMode::getDesktopMode().height / VideoMode::getDesktopMode().width;
 
-	// Create a video mode object
-	VideoMode vm(1920, 1080);
-
 	// Create and open a window for the game
-	RenderWindow window(vm, "Mandelbrot", Style::Default);
+	RenderWindow window(VideoMode(resolution.x, resolution.y), "Mandelbrot", Style::Default);
 	ComplexPlane ComplexPlane(aspectRatio); //creates the complex plane object we needed
 	Font font; //creates font
 	font.loadFromFile("calibri-regular.ttf"); //loads the font
@@ -29,7 +27,7 @@ int main()
 	mytext.setFont(font);
 	VertexArray backgrounder; //vertex array creation
 	backgrounder.setPrimitiveType(Points);
-	backgrounder.resize(widthOfScreen * heightOfScreen);
+	backgrounder.resize(VideoMode::getDesktopMode().width * VideoMode::getDesktopMode().height);
 	
 	enum class state {CALCULATING, DISPLAYING};
 	state stateOfProgram = state::CALCULATING;
