@@ -13,8 +13,8 @@ int main()
 {
 	// Get the desktop resolution
 	Vector2f resolution;
-	resolution.x = VideoMode::getDesktopMode().width;
-	resolution.y = VideoMode::getDesktopMode().height;
+	resolution.x = VideoMode::getDesktopMode().width; //this is the width of the monitor
+	resolution.y = VideoMode::getDesktopMode().height; // height of the monitor
 
 	//Calculate the aspect ratio of the monitor
 	float aspectRatio = resolution.y / resolution.x;
@@ -33,13 +33,13 @@ int main()
 	enum class state {CALCULATING, DISPLAYING}; // Create enum class
 	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
 
-	Vector2f pixels;
-	size_t numberOfIters = 0;
+	Vector2f pixels; //vector of pixels
+	size_t numberOfIters = 0; // this is the number of iterations required for z to be less than 2 or the max iteration count
 
 	while (window.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event)) // Poll windows queue events
+		while (window.pollEvent(event)) // Poll window queue events
 		{
 			if (event.type == sf::Event::Closed)  // Close the window
 			{
@@ -48,7 +48,7 @@ int main()
 			}
 			if (event.type == sf::Event::Resized) // Resize the window
 			{
-				resolution.x = VideoMode::getDesktopMode().width;
+				resolution.x = VideoMode::getDesktopMode().width; //had to do this again because we resized the window, and that changes things
 				resolution.y = VideoMode::getDesktopMode().height;
 				aspectRatio = resolution.y / resolution.x;
 				backgrounder.resize(VideoMode::getDesktopMode().width* VideoMode::getDesktopMode().height);
@@ -82,11 +82,11 @@ int main()
 		}
 		if (stateOfProgram == state::CALCULATING) // Checks to if the state of our enum class is calculating
 		{
-			for (int j = 0; j < static_cast<int>(resolution.x); j++) 
+			for (int j = 0; j < static_cast<int>(resolution.x); j++) //had to do the static_cast<int> to make sure that the 
 			{					
 				for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
 				{
-					backgrounder[j + i * resolution.x].position = { (float)j, (float)i };
+					backgrounder[j + i * resolution.x].position = { (float)j, (float)i }; 
 					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
 					numberOfIters = ComplexPlane.countIterations(pixels);
 					Uint8 r, g, b;
@@ -104,9 +104,9 @@ int main()
 		for (int index = 0; index < 50; index++) {
 			backgrounder[index];
 		}
-		window.clear();
-		window.draw(backgrounder);
-		window.draw(mytext);
+		window.clear(); //clears the window
+		window.draw(backgrounder); //draws our vertex array!
+		window.draw(mytext); //draws the text that we put
 		window.display();
 	}
 	
