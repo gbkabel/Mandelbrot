@@ -86,9 +86,6 @@ int main()
 				}
 			}
 		}
-		window.draw(backgrounder);
-		window.draw(mytext);
-		window.display();
 	}
 	
 	return 0;
