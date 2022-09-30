@@ -83,8 +83,14 @@ int main()
 			{					
 				for (int i = 0; i < resolution.y; i++)		// Double for loop to loop through all pixels
 				{
+					Uint8 r, g, b;
+					size_t numberOfIters;
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
 					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
+					ComplexPlane.countIterations(pixels);
+					numberOfIters = ComplexPlane.countIterations(pixels);
+					ComplexPlane.iterationsToRGB(numberOfIters, r,g,b);
+					backgrounder[j + i * 1].color = {r,g,b};
 				}
 			}
 			stateOfProgram = state::DISPLAYING;
