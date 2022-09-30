@@ -1,6 +1,7 @@
 // Include important C++ libraries here
 #include <iostream>
 #include <complex>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "ComplexPlane.h"
 
@@ -33,6 +34,7 @@ int main()
 	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
 
 	Vector2f pixels;
+	size_t numberOfIters = 0;
 
 	while (window.isOpen())
 	{
@@ -84,11 +86,10 @@ int main()
 			{					
 				for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
 				{
-					Uint8 r, g, b;
-					size_t numberOfIters;
 					backgrounder[j + i * resolution.x].position = { (float)j, (float)i };
 					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
 					numberOfIters = ComplexPlane.countIterations(pixels);
+					Uint8 r, g, b;
 					ComplexPlane.iterationsToRGB(numberOfIters, r,g,b);
 					backgrounder[j + i * resolution.x].color = {r,g,b};
 					//cout << backgrounder[i].position.x << endl;

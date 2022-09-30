@@ -59,16 +59,16 @@ size_t ComplexPlane::countIterations(Vector2f coord)
 	float x = coord.x;
 	float y = coord.y;
 
-	size_t count = 0;
+	size_t numberofIters = 0;
 	complex<float> c(x, y);
 	complex<float> z(0.0, 0.0);
 
-	while (count < MAX_ITER && abs(z) < 2.0)
+	while (numberofIters < MAX_ITER && abs(z) < 2.0)
 	{
 		z = z * z + c;
-		count++;
+		numberofIters++;
 	}
-	return count;
+	return numberofIters;
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
