@@ -1,4 +1,5 @@
 #include "ComplexPlane.h"
+#include <cmath>
 
 using namespace std;
 using namespace sf;
@@ -104,11 +105,11 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 			g = 0;
 			b = 255;
 		}
-		else
+		else if (count >= 60 && count <= 64)
 		{
-			r = 255;
+			r = 0;
 			g = 0;
-			b = 8;
+			b = 0;
 		}
 	}
 }

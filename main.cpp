@@ -27,7 +27,7 @@ int main()
 	mytext.setFont(font);
 	VertexArray backgrounder; //vertex array creation
 	backgrounder.setPrimitiveType(Points);
-	backgrounder.resize(VideoMode::getDesktopMode().width * VideoMode::getDesktopMode().height);
+	backgrounder.resize(resolution.x * resolution.y);
 	
 	enum class state {CALCULATING, DISPLAYING}; // Create enum class
 	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
@@ -59,6 +59,7 @@ int main()
 				{
 					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
+					break;
 				}
 				else if (event.mouseButton.button == sf::Mouse::Right) // Right-click zooms out
 				{
@@ -79,22 +80,28 @@ int main()
 		}
 		if (stateOfProgram == state::CALCULATING) // Checks to if the state of our enum class is calculating
 		{
-			for (int j = 0; j < resolution.x; j++) 
+			for (int j = 0; j < static_cast<int>(resolution.x); j++) 
 			{					
-				for (int i = 0; i < resolution.y; i++)		// Double for loop to loop through all pixels
+				for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
 				{
 					Uint8 r, g, b;
 					size_t numberOfIters;
-					backgrounder[j + i * 1].position = { (float)j, (float)i };
+					backgrounder[j + i * resolution.x].position = { (float)j, (float)i };
 					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
-					ComplexPlane.countIterations(pixels);
 					numberOfIters = ComplexPlane.countIterations(pixels);
 					ComplexPlane.iterationsToRGB(numberOfIters, r,g,b);
-					backgrounder[j + i * 1].color = {r,g,b};
+					backgrounder[j + i * resolution.x].color = {r,g,b};
+					//cout << backgrounder[i].position.x << endl;
+					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.r) << endl;
+					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.g) << endl;
+					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.b) << endl;
 				}
 			}
 			stateOfProgram = state::DISPLAYING;
 			ComplexPlane.loadText(mytext);
+		}
+		for (int index = 0; index < 50; index++) {
+			backgrounder[index];
 		}
 		window.clear();
 		window.draw(backgrounder);
