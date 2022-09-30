@@ -32,6 +32,9 @@ int main()
 	enum class state {CALCULATING, DISPLAYING}; // Create enum class
 	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
 
+	Vector2f pixels;
+	size_t iterations;
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -82,10 +85,16 @@ int main()
 				for (int i = 0; i < resolution.y; i++)		// Double for loop to loop through all pixels
 				{
 					backgrounder[j + i * 1].position = { (float)j, (float)i };
-
+					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
+					//iterations = ComplexPlane::countIterations(pixels);
+					Uint8 r = 0;
 				}
 			}
 		}
+		window.clear();
+		window.draw(backgrounder);
+		window.draw(mytext);
+		window.display();
 	}
 	
 	return 0;
