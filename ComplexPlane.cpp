@@ -50,11 +50,11 @@ void ComplexPlane::loadText(Text& text)
 {
 	stringstream textBox;
 	textBox << "Mandelbrot Set";
-	textBox << "\nCenter: (";
-	textBox << "\nCursor: (";
+	textBox << "\nCenter: (" << m_view.getCenter().x << "," << m_view.getCenter().y << ")";
+	textBox << "\nCursor: (" << m_mouseLocation.x << "," << m_mouseLocation.y << ")";
 	textBox << "Left-click to Zoom in";
 	textBox << "Right-click to Zoom out";
-	
+	text.setString(textBox.str());
 }
 
 size_t ComplexPlane::countIterations(Vector2f coord)
