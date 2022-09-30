@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include <cmath>
+#include <complex>
+#include <vector>
+#include <sstream>
 using namespace std;
 using namespace sf;
 

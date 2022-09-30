@@ -1,7 +1,3 @@
-#include <vector>
-#include <cmath>
-#include <complex>
-#include <sstream>
 #include "ComplexPlane.h"
 
 using namespace std;
