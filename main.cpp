@@ -32,8 +32,6 @@ int main()
 	enum class state {CALCULATING, DISPLAYING}; // Create enum class
 	state stateOfProgram = state::CALCULATING;  // Set the state to calculating
 
-	Vector2f pixels;
-	size_t iterations;
 
 	while (window.isOpen())
 	{
