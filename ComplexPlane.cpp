@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <complex>
 #include <sstream>
 #include "ComplexPlane.h"
 
@@ -37,7 +38,7 @@ void ComplexPlane::setCenter(Vector2f coord)
 
 View ComplexPlane::getView()
 {
-	
+	return m_view;
 }
 
 void ComplexPlane::setMouseLocation(Vector2f coord)
@@ -53,14 +54,24 @@ void ComplexPlane::loadText(Text& text)
 	textBox << "\nCursor: (";
 	textBox << "Left-click to Zoom in";
 	textBox << "Right-click to Zoom out";
-	text = textBox.();
-	return text;
 	
 }
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
+	float x = coord.x;
+	float y = coord.y;
 
+	size_t count = 0;
+	complex<float> c(x, y);
+	complex<float> z(0.0, 0.0);
+
+	while (count < MAX_ITER && abs(z) < 2.0)
+	{
+		z = z * z + c;
+		count++;
+	}
+	return count;
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
