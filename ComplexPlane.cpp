@@ -1,8 +1,13 @@
 #include "ComplexPlane.h"
 #include <cmath>
+#include <SFML/System.hpp>
 
 using namespace std;
 using namespace sf;
+
+void threader() { //thread function, might not keep
+	
+}
 
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
@@ -56,6 +61,10 @@ void ComplexPlane::loadText(Text& text)
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
+	/* The way this works is by taking the coordinates of x and y, that are fetched from
+	the for loop that runs through the actual pixels and feeding them here and
+	then it does the comparison*/
+	
 	float x = coord.x;
 	float y = coord.y;
 
