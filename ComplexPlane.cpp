@@ -73,8 +73,6 @@ size_t ComplexPlane::countIterations(Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
-	for (count = 0; count < MAX_ITER; count++)
-	{
 		if (count < 12)
 		{
 			r = 89;
@@ -111,5 +109,4 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 			g = 0;
 			b = 0;
 		}
-	}
 }
