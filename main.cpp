@@ -9,6 +9,7 @@
 using namespace std;
 using namespace sf;
 
+size_t threader(size_t pixlr); 
 int main()
 {
 	// Get the desktop resolution
@@ -102,16 +103,18 @@ int main()
 			stateOfProgram = state::DISPLAYING;
 			ComplexPlane.loadText(mytext);
 		}
-		for (int index = 0; index < 50; index++) {
-			backgrounder[index];
-		}
 		window.clear(); //clears the window
 		window.draw(backgrounder); //draws our vertex array!
 		window.draw(mytext); //draws the text that we put
 		window.display();
 	}
-	
+		
 	return 0;
+}
+size_t threader(size_t pixlr) {
+	size_t totalIterations;
+	ComplexPlane.countIterations(pixlr);
+
 }
 
 

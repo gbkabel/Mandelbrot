@@ -1,13 +1,11 @@
 #include "ComplexPlane.h"
 #include <cmath>
+#include <thread>
+#include <future>
 #include <SFML/System.hpp>
 
 using namespace std;
 using namespace sf;
-
-void threader() { //thread function, might not keep
-	
-}
 
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
