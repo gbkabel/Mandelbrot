@@ -60,6 +60,7 @@ int main()
 				if (event.mouseButton.button == sf::Mouse::Left) // Left-click zooms in
 				{
 					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
+					Vector2i mouser = Mouse::getPosition();
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
 					break;
 				}

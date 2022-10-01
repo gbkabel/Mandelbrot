@@ -35,7 +35,7 @@ void ComplexPlane::zoomOut()
 
 void ComplexPlane::setCenter(Vector2f coord)
 {
-	m_view.setSize(coord);
+	m_view.setCenter(coord);
 }
 
 View ComplexPlane::getView()
