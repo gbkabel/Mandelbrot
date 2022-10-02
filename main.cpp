@@ -1,6 +1,7 @@
 // Include important C++ libraries here
 #include <iostream>
 #include <complex>
+#include <thread>
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "ComplexPlane.h"
@@ -84,12 +85,17 @@ int main()
 		}
 		if (stateOfProgram == state::CALCULATING) // Checks to if the state of our enum class is calculating
 		{
+			const int numberOfThreads = 12; //I set this to 12 because I figured my CPU is 6 cores & 12 threads and so this would work p good
+			thread t[numberOfThreads];
 			for (int j = 0; j < static_cast<int>(resolution.x); j++) //had to do the static_cast<int> to make sure that the 
 			{					
 				for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
 				{
 					backgrounder[j + i * resolution.x].position = { (float)j, (float)i }; 
 					pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
+					for (int index = 0; index < numberOfThreads; index++) {
+						t[index] = thread(&ComplexPlane::countIterations, pixels);
+					}
 					numberOfIters = ComplexPlane.countIterations(pixels);
 					Uint8 r, g, b;
 					ComplexPlane.iterationsToRGB(numberOfIters, r,g,b);
@@ -110,11 +116,6 @@ int main()
 	}
 		
 	return 0;
-}
-size_t threader(size_t pixlr) {
-	size_t totalIterations;
-	ComplexPlane.countIterations(pixlr);
-
 }
 
 
