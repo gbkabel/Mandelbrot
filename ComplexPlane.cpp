@@ -1,7 +1,5 @@
 #include "ComplexPlane.h"
 #include <cmath>
-#include <thread>
-#include <future>
 #include <SFML/System.hpp>
 
 using namespace std;
