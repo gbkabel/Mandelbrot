@@ -3,7 +3,6 @@
 #include <cmath>
 #include <complex>
 #include <vector>
-#include <thread>
 #include <sstream>
 
 using namespace std;
