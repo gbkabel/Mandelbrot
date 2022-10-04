@@ -29,6 +29,5 @@ private:
 	const float BASE_WIDTH = 4.0;
 	const float BASE_HEIGHT = 4.0;
 	const float BASE_ZOOM = 0.5;
-	const unsigned int number_of_threads = 4;
 };
 	
