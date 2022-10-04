@@ -84,7 +84,7 @@ int main()
 			window.close();
 		}
 		if (stateOfProgram == state::CALCULATING) // Checks to if the state of our enum class is calculating
-		{/*
+		{
 			for (int j = 0; j < static_cast<int>(resolution.x); j++) //had to do the static_cast<int> to make sure that the 
 			{					
 				for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
@@ -95,20 +95,7 @@ int main()
 					Uint8 r, g, b;
 					ComplexPlane.iterationsToRGB(numberOfIters, r,g,b);
 					backgrounder[j + i * resolution.x].color = {r,g,b};
-					//cout << backgrounder[i].position.x << endl;
-					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.r) << endl;
-					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.g) << endl;
-					//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.b) << endl;
 				}
-			}
-			*/
-			const int threads = 12;
-			thread t[threads];
-			for (int i = 0; i < threads; i++) {
-				t[i] = thread(&ComplexPlane::calculator, ComplexPlane, resolution, window, backgrounder);
-			}
-			for (int index = 0; index < threads; index++) {
-				t[index].join();
 			}
 			stateOfProgram = state::DISPLAYING;
 			ComplexPlane.loadText(mytext);
