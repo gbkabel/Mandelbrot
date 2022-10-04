@@ -118,25 +118,3 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 		}
 }
 
-void ComplexPlane::calculator(ComplexPlane &ComplexPlane, Vector2f &resolution, RenderWindow &window, VertexArray &backgrounder) {
-	Vector2f pixels;
-	size_t numberOfIters;
-	for (int j = 0; j < static_cast<int>(resolution.x); j++) //had to do the static_cast<int> to make sure that the 
-	{
-		for (int i = 0; i < static_cast<int>(resolution.y); i++)		// Double for loop to loop through all pixels
-			{
-			backgrounder[j + i * resolution.x].position = { (float)j, (float)i };
-			pixels = window.mapPixelToCoords(Vector2i(j, i), ComplexPlane.getView());
-			numberOfIters = ComplexPlane.countIterations(pixels);
-			Uint8 r, g, b;
-			ComplexPlane.iterationsToRGB(numberOfIters, r, g, b);
-			backgrounder[j + i * resolution.x].color = { r,g,b };
-			//cout << backgrounder[i].position.x << endl;
-			//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.r) << endl;
-			//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.g) << endl;
-			//cout << static_cast<int>(backgrounder[j + i * resolution.x].color.b) << endl;
-			}
-		}
-
-}
-
