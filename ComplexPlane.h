@@ -21,7 +21,6 @@ public:
 	void loadText(Text&);
 	size_t countIterations(Vector2f coord);
 	void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
-	void calculator(ComplexPlane &ComplexPlane, Vector2f &resolution, RenderWindow &window, VertexArray &backgrounder);
 private:
 	Vector2f m_mouseLocation;
 	View m_view;
