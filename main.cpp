@@ -46,7 +46,6 @@ int main()
 			if (event.type == sf::Event::Closed)  // Close the window
 			{
 				window.close();
-				break;
 			}
 			if (event.type == sf::Event::Resized) // Resize the window
 			{
@@ -54,7 +53,6 @@ int main()
 				resolution.y = VideoMode::getDesktopMode().height;
 				aspectRatio = resolution.y / resolution.x;
 				backgrounder.resize(VideoMode::getDesktopMode().width* VideoMode::getDesktopMode().height);
-				break;
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
@@ -63,20 +61,17 @@ int main()
 				{
 					ComplexPlane.zoomIn(); //this accesses the class function that makes the whole thing zoom in
 					Vector2i mouser = Mouse::getPosition();
-					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
-					break;
+					ComplexPlane.setCenter(window.mapPixelToCoords(mouser, ComplexPlane.getView())); //this sets the center of the new view at whatever point the user clicks on
 				}
 				else if (event.mouseButton.button == sf::Mouse::Right) // Right-click zooms out
 				{
 					ComplexPlane.zoomOut(); //ditto with zoom out
 					ComplexPlane.setCenter(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); // ditto
 				}
-				break;
 			}
 			if (event.type == sf::Event::MouseMoved) // Mouse move gets current coords
 			{
 				ComplexPlane.setMouseLocation(window.mapPixelToCoords(Mouse::getPosition(), ComplexPlane.getView())); //This is used to display the mouse coordinates as it moves
-				break;
 			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Escape)) // Escape key closes program
@@ -97,9 +92,9 @@ int main()
 					backgrounder[j + i * resolution.x].color = {r,g,b};
 				}
 			}
-			stateOfProgram = state::DISPLAYING;
-			ComplexPlane.loadText(mytext);
+			stateOfProgram = state::DISPLAYING;		
 		}
+		ComplexPlane.loadText(mytext);
 		window.clear(); //clears the window
 		window.draw(backgrounder); //draws our vertex array!
 		window.draw(mytext); //draws the text that we put
